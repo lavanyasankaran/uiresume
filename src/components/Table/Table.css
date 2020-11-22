@@ -1,0 +1,30 @@
+body {
+    background: url('../../assets/elegant-white-background.jpg');
+    text-align: center;
+    padding: 14px;
+    font: normal small-caps normal 16px/1.4 Georgia;
+  }
+
+  table {
+    width: 100%;
+    margin: 20px auto;
+    table-layout: auto;
+  }
+  
+  .fixed {
+    table-layout: fixed;
+  }
+  
+  table,
+  td,
+  th {
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    border: solid 1px;
+    font: italic normal  14px Georgia, sans-serif;
+    text-align: center;
+  }

@@ -1,0 +1,35 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "status": "R",
+      "company_name": "Wipro",
+      "position": "Manager",
+      "position_start_date":"jul-2009",
+      "position_end_date":"may-2015",
+      "primary_job_location":"chennai",
+      "position_titles":"vice president",
+      "Functions":"Administration Occupations",
+      "position_summary":"vice president in wipro",
+      "industries":"Third party logistics firm",
+      "military_position":"senior",
+      "job_note":"technical stuff"
+    },
+    {
+      "id": 2,
+      "status": "pc",
+      "company_name": "CTS",
+      "position": " Senior Manager",
+      "position_start_date":"may-2015",
+      "position_end_date":"present",
+      "primary_job_location":"chennai",
+      "position_titles":"vice president",
+      "Functions":"Administration Occupations",
+      "position_summary":" president in cts",
+      "industries":"Third party logistics firm",
+      "military_position":"senior",
+      "job_note":"technical stuff"
+    }
+    
+  ]
+}
