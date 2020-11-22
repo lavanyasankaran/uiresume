@@ -11,7 +11,7 @@ import {
     Button,
     InputAdornment,
     Grid,
-    IconButton,
+    IconButton, MenuItem, Input, Chip, useTheme
   } from "@material-ui/core";
   import {
     AccountCircle,
@@ -44,6 +44,11 @@ import {
     { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
     { title: 'Goodfellas', year: 1990 },
     { title: 'The Matrix', year: 1999 }]
+
+  const languageList = ["English","Mandarin Chinese","Spanish","Hindi","Bengali","Portuguese","Russian",
+  "Japanese","Western Punjabi","Marathi","Telugu","Wu Chinese","Turkish","Korean","French","German","Vietnamese","Tamil",
+  "Yue Chinese","Urdu","Javanese","Italian","Egyptian Arabic","Gujarati","Iranian Persian","Bhojpuri","Indonesian","Polish","Yoruba","Maithili"];
+  const frequencyList = ["Native Language","Fluent","Working Language","Somewhat"];
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
@@ -87,6 +92,10 @@ const useStyles = makeStyles((theme) => ({
       inputRoot: {
         fontSize: 20
       },
+      formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+      },
       labelRoot: {
         fontSize: 20,
         color: " black",
@@ -98,8 +107,10 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 
+
 const Persondetails =()=>{
     const classes = useStyles();
+    const theme = useTheme();
     const isMobile = useMediaQuery("(max-device-width:700px)");
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -111,6 +122,7 @@ const Persondetails =()=>{
     const[suffix,setSuffix] = useState([]);
     const[citizenship,setCitizenship] = useState([]);
     const[status,setStatus]=useState("");
+    const[selectedLang,setSelectedLang]=useState([]);
     const handleDateChange = (date) => {
       setSelectedDate(date);
     };
@@ -284,6 +296,52 @@ const Persondetails =()=>{
      />
 </MuiPickersUtilsProvider>
        
+      </Box>
+      <Box className={classes.textBoxDiv}>
+        <div>
+      <InputLabel id="langLabel">Language</InputLabel>
+        <Select
+          labelId="langLabel"
+          id="demo-simple-select"
+          style={{width:"50%"}}
+          onChange={(e)=>{
+            const newLang = {name:e.target.value};
+            setSelectedLang([...selectedLang,newLang]);
+          }}
+        >
+          {languageList.map((lang) => (
+            <MenuItem value={lang}>{lang}</MenuItem>
+          ))}
+        </Select>
+        </div>
+        {
+          selectedLang.length > 0 && selectedLang.map(lang => (
+            <div>
+            <FormControl variant="outlined" className={classes.formControl} style={{width:"40%"}}>
+              <InputLabel id="langLabel">{lang.name}</InputLabel>
+              <Select
+                labelId="langLabel"
+                id="demo-simple-select"
+                
+                onChange={(e)=>{
+                  selectedLang.forEach(eachLang=>{if(eachLang.name === lang.name) lang.frequency=e.target.value});
+                  setSelectedLang([...selectedLang]);
+                }}
+              >
+                <MenuItem value=""><em>Please Select</em></MenuItem>
+                {frequencyList.map((fluency) => (
+                  <MenuItem value={fluency}>{fluency}</MenuItem>
+                ))}
+              </Select>
+              </FormControl>
+              </div>
+          ))
+        }
+      
+  
+          
+        
+        
       </Box>
       <Box className={classes.textBoxDiv}>
       <InputLabel className={isMobile ? classes.textBoxSm : classes.textBox}>Citizenship</InputLabel>
